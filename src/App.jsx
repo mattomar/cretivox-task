@@ -1,20 +1,22 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/home';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './themes/theme';
+import './styles/App.css'
+import './styles/loadFonts';
 
-  function App() {
-    const animals = ["Lion", "Cow", "Snake", "Lizard"];
-    const animalsList = animals.map((animal) => <li key={animal}>{animal}</li>)
-  
-    return (
-      <div>
-        <h1>Animals: </h1>
-        <ul>
-          {animalsList}
-        </ul>
-      </div>
-    );
-  }
+import React from 'react';
 
-  export default App;
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+}
 
-
- 
+export default App;
