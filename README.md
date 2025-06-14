@@ -1,6 +1,6 @@
 # 🌟 Luminance – Personal Interactive Website
 
-A one-page interactive website that introduces who I am — built from scratch as part of the **CRETIVOX INTERNSHIP EXPERIENCE II (Batch ⃤)** challenge. This project reflects clean code, personality, and immersive scroll-triggered animations using **GSAP**.
+A one-page interactive website that introduces who I am — built from scratch as part of the **CRETIVOX INTERNSHIP EXPERIENCE II (Batch 3)** challenge. This project reflects clean code, personality, and immersive scroll-triggered animations using **GSAP**.
 
 ## 🎯 Project Goals
 
