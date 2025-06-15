@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import OpeningOverlay from '../components/openingOverlay'; // adjust path as needed
-import noisyBg from '../assets/images/noisyBg.jpg';
+import OpeningOverlay from '../components/openingOverlay';
+import noisyBg from '../../public/images/noisyBg.jpg';
+import MainCanvas from '../components/three/mainCanvas'
 
 export default function HomePage() {
   const [showOpening, setShowOpening] = useState(true);
@@ -9,7 +10,7 @@ export default function HomePage() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowOpening(false);
-    }, 3600); // match the GSAP animation duration
+    }, 3600);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -24,7 +25,7 @@ export default function HomePage() {
         color: 'white',
       }}
     >
-      {/* Background Image */}
+      {/* 🪵 Noisy Background */}
       <Box
         component="img"
         src={noisyBg}
@@ -44,13 +45,12 @@ export default function HomePage() {
         }}
       />
 
-      {/* Main Content */}
-      <Box sx={{ position: 'relative', zIndex: 1, p: 4 }}>
-        <Typography variant="h4">Welcome to My Personal Website</Typography>
-        {/* Add the rest of your homepage sections here */}
+      {/* 🌀 Spinning CD via R3F */}
+      <Box sx={{ position: 'relative', zIndex: 1 }}>
+        <MainCanvas />
       </Box>
 
-      {/* Overlay */}
+      {/* ⬛ Opening Overlay */}
       {showOpening && <OpeningOverlay />}
     </Box>
   );

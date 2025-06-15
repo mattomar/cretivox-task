@@ -2,8 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import React from 'react';
-import openingBackground from '../assets/images/openingCd.jpg';
-import noisyBg from '../assets/images/noisyBg.jpg';
+import openingBackground from '../../public/images/openingCd.jpg';
+import noisyBg from '../../public/images/noisyBg.jpg';
 
 export default function OpeningOverlay() {
   const containerRef = useRef(null);
