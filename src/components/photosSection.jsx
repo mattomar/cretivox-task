@@ -13,7 +13,7 @@ import editingVideo from '../assets/images/editing.mov';
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollSection = () => {
-  const wrapperRef = useRef(null); 
+  const wrapperRef = useRef(null);
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
@@ -39,7 +39,7 @@ const ScrollSection = () => {
         audio.play().catch((err) => console.warn('Audio play error:', err));
         isPlayingRef.current = true;
       }
-      gsap.killTweensOf(audio, "volume");
+      gsap.killTweensOf(audio, 'volume');
       gsap.to(audio, {
         volume: 1,
         duration: 2,
@@ -48,7 +48,7 @@ const ScrollSection = () => {
     };
 
     const fadeOutAudio = () => {
-      gsap.killTweensOf(audio, "volume");
+      gsap.killTweensOf(audio, 'volume');
       gsap.to(audio, {
         volume: 0,
         duration: 2,
@@ -83,7 +83,6 @@ const ScrollSection = () => {
           end: 'bottom top',
           scrub: 3,
           pin: true,
-          markers: false,
         },
       });
 
@@ -96,7 +95,6 @@ const ScrollSection = () => {
           end: 'bottom top',
           scrub: 3,
           pin: true,
-          markers: false,
         },
       });
 
@@ -109,7 +107,6 @@ const ScrollSection = () => {
           end: 'bottom top',
           scrub: 3,
           pin: true,
-          markers: false,
         },
       });
 
@@ -122,7 +119,6 @@ const ScrollSection = () => {
           end: 'bottom top',
           scrub: 3,
           pin: true,
-          markers: false,
         },
       });
 
@@ -135,7 +131,6 @@ const ScrollSection = () => {
           end: 'bottom top',
           scrub: 3,
           pin: true,
-          markers: false,
         },
       });
     });
@@ -158,6 +153,9 @@ const ScrollSection = () => {
         transform: 'translate(-50%, -50%)',
         maxWidth: '100%',
         maxHeight: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Box
@@ -175,50 +173,25 @@ const ScrollSection = () => {
           transformOrigin: 'center',
         }}
       />
-      {/* Text Overlay */}
-      {ref === image1Ref ? (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '30%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'white',
-            fontSize: {
-              xs: '1.2rem',
-              sm: '1.5rem',
-              md: '2rem',
-              lg: '3rem',
-              xl: '4rem',
-            },
-            textAlign: 'center',
-            fontFamily: 'La Cerchia',
-            fontWeight: 'bold',
-            textShadow: '0 0 20px rgba(0,0,0,0.7)',
-            pointerEvents: 'none',
-          }}
-        >
-          {text}
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '100%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'white',
-            fontSize: 'clamp(1rem, 2.5vw, 2rem)',
-            textAlign: 'center',
-            fontFamily: 'La Cerchia',
-            fontWeight: 'bold',
-            textShadow: '0 0 20px rgba(0,0,0,0.7)',
-            pointerEvents: 'none',
-          }}
-        >
-          {text}
-        </Box>
-      )}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: ref === image1Ref ? '30%' : '100%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          color: 'white',
+          fontSize: ref === image1Ref
+            ? { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '3rem', xl: '4rem' }
+            : 'clamp(1rem, 2.5vw, 2rem)',
+          textAlign: 'center',
+          fontFamily: 'La Cerchia',
+          fontWeight: 'bold',
+          textShadow: '0 0 20px rgba(0,0,0,0.7)',
+          pointerEvents: 'none',
+        }}
+      >
+        {text}
+      </Box>
     </Box>
   );
 
@@ -307,7 +280,7 @@ const ScrollSection = () => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-             color: 'white',
+              color: 'white',
               fontSize: 'clamp(1rem, 2.5vw, 2rem)',
               textAlign: 'center',
               fontWeight: 'bold',
