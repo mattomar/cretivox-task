@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import OpeningOverlay from '../components/overlays/OpeningOverlay';
-import AboutMe from '../components/sections/AboutMe';
+import OpeningOverlay from '../components/openingOverlay';
+import AboutMe from '../components/aboutMe';
 
 export default function HomePage() {
-  const [showOpening, setShowOpening] = useState(true);
+  const [stage, setStage] = useState('opening'); // 'opening' | 'about'
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowOpening(false);
-    }, 3600); // Adjust duration as needed
+      setStage('about');
+    }, 3600);
+
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {showOpening && <OpeningOverlay />}
-      {!showOpening && <AboutMe />}
+      {stage === 'opening' && <OpeningOverlay />}
+      {stage === 'about' && <AboutMe />}
     </>
   );
 }

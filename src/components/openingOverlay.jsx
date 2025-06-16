@@ -2,13 +2,12 @@ import { Box, Typography } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import React from 'react';
-import openingBackground from '../../public/images/openingCd.jpg';
-import noisyBg from '../../public/images/noisyBg.jpg';
+import openingBackground from '../assets/images/openingCd.jpg';
 
 export default function OpeningOverlay() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
-  const bgRef = useRef(null);
+  const bgRef = useRef(null); // We'll animate this ref on a child Box
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -44,51 +43,31 @@ export default function OpeningOverlay() {
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         overflow: 'hidden',
         zIndex: 10,
         pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      {/* Noisy Background */}
-      <Box
-        component="img"
-        src={noisyBg}
-        alt="Noisy Background"
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%) rotate(90deg)',
-          maxWidth: '100vh',
-          maxHeight: '100vw',
-          objectFit: 'contain',
-          zIndex: -1,
-          opacity: 0.1,
-          pointerEvents: 'none',
-          filter: 'contrast(1.2) brightness(0.6)',
-        }}
-      />
-
-      {/* Central Background Image */}
+      {/* Background div with CSS background image */}
       <Box
         ref={bgRef}
-        component="img"
-        src={openingBackground}
-        alt="Opening Background"
         sx={{
           position: 'absolute',
           top: '50%',
           left: '50%',
+          width: '80vw',
+          height: '80vh',
+          backgroundImage: `url(${openingBackground})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
           transform: 'translate(-50%, -50%) scale(1)',
-          maxWidth: '80vw',
-          maxHeight: '80vh',
-          objectFit: 'contain',
-          zIndex: 0,
           opacity: 0.25,
+          zIndex: 0,
+          pointerEvents: 'none',
         }}
       />
 

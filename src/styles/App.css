@@ -4,7 +4,6 @@ body {
   padding: 0;
   height: 100%;
   background-color: black;
-  overflow: hidden;
   position: relative; /* Required for ::before to be positioned correctly */
 }
 
@@ -16,7 +15,7 @@ body::before {
   transform: translate(-50%, -50%) rotate(90deg);
   width: 100vh;
   height: 100vw;
-  background-image: url('/images/noisyBg.jpg'); /* ✅ Adjust path if needed */
+  background-image: url('../assets/images/noisyBg.jpg'); /* ✅ Adjust path if needed */
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.1;
@@ -24,3 +23,10 @@ body::before {
   pointer-events: none;
   filter: contrast(1.2) brightness(0.6);
 }
+@font-face {
+  font-family: 'Moonscape';
+  src: url('../assets/fonts/Moonscape Demo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
