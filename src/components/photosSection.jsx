@@ -175,23 +175,50 @@ const ScrollSection = () => {
           transformOrigin: 'center',
         }}
       />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          color: 'white',
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
-          textAlign: 'center',
-          fontFamily: 'La Cerchia',
-          fontWeight: 'bold',
-          textShadow: '0 0 20px rgba(0,0,0,0.7)',
-          pointerEvents: 'none',
-        }}
-      >
-        {text}
-      </Box>
+      {/* Text Overlay */}
+      {ref === image1Ref ? (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: 'white',
+            fontSize: {
+              xs: '1.2rem',
+              sm: '1.5rem',
+              md: '2rem',
+              lg: '3rem',
+              xl: '4rem',
+            },
+            textAlign: 'center',
+            fontFamily: 'La Cerchia',
+            fontWeight: 'bold',
+            textShadow: '0 0 20px rgba(0,0,0,0.7)',
+            pointerEvents: 'none',
+          }}
+        >
+          {text}
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: 'white',
+            fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+            textAlign: 'center',
+            fontFamily: 'La Cerchia',
+            fontWeight: 'bold',
+            textShadow: '0 0 20px rgba(0,0,0,0.7)',
+            pointerEvents: 'none',
+          }}
+        >
+          {text}
+        </Box>
+      )}
     </Box>
   );
 
@@ -235,7 +262,7 @@ const ScrollSection = () => {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               color: 'white',
-              fontSize: 'clamp(1rem, 4vw, 3rem)',
+              fontSize: 'clamp(1rem, 2vw, 1rem)',
               textAlign: 'center',
               fontWeight: 'bold',
               textShadow: '0 0 20px rgba(0,0,0,0.7)',
@@ -280,8 +307,8 @@ const ScrollSection = () => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              color: 'white',
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
+             color: 'white',
+              fontSize: 'clamp(1rem, 2.5vw, 2rem)',
               textAlign: 'center',
               fontWeight: 'bold',
               textShadow: '0 0 20px rgba(0,0,0,0.7)',
