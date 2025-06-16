@@ -143,16 +143,19 @@ const ScrollSection = () => {
     };
   }, []);
 
-  const renderImageBox = (ref, imgSrc, text, scale = 1.5) => (
+  const renderImageBox = (ref, imgSrc, text, scale = 1) => (
     <Box
       ref={ref}
       sx={{
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: `translate(-50%, -50%) scale(${scale})`,
+        transform: 'translate(-50%, -50%)',
         maxWidth: '100%',
         maxHeight: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Box
@@ -166,17 +169,22 @@ const ScrollSection = () => {
           maxWidth: '100%',
           maxHeight: '100%',
           objectFit: 'cover',
+          transform: `scale(${scale})`,
+          transformOrigin: 'center',
         }}
       />
       <Box
         sx={{
           position: 'absolute',
-          top: '45%',
+          top: ref === image1Ref ? '30%' : '100%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           color: 'white',
-          fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+          fontSize: ref === image1Ref
+            ? { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '3rem', xl: '4rem' }
+            : 'clamp(1rem, 2.5vw, 2rem)',
           textAlign: 'center',
+          fontFamily: 'La Cerchia',
           fontWeight: 'bold',
           textShadow: '0 0 20px rgba(0,0,0,0.7)',
           pointerEvents: 'none',
@@ -186,7 +194,6 @@ const ScrollSection = () => {
       </Box>
     </Box>
   );
-  
 
   return (
     <Box ref={wrapperRef}>
@@ -287,12 +294,93 @@ const ScrollSection = () => {
       </Box>
 
       <Box ref={section4Ref} sx={sectionStyle}>
-      {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel')}
+  <Box
+    ref={image4Ref}
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%) scale(1.5)',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }}
+  >
+    <Box
+      component="img"
+      src={frankImage}
+      alt="Frank"
+      sx={{
+        display: 'block',
+        width: 'auto',
+        height: 'auto',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'cover',
+      }}
+    />
+    <Box
+      sx={{
+        position: 'absolute',
+        top: '45%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        textShadow: '0 0 20px rgba(0,0,0,0.7)',
+        pointerEvents: 'none',
+      }}
+    >
+      frank says it in a way i never could, but always feel
+    </Box>
+  </Box>
 </Box>
 
 <Box ref={section5Ref} sx={sectionStyle}>
-{renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real')}
+  <Box
+    ref={image5Ref}
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%) scale(1.5)',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }}
+  >
+    <Box
+      component="img"
+      src={hikeImage}
+      alt="Hike"
+      sx={{
+        display: 'block',
+        width: 'auto',
+        height: 'auto',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'cover',
+      }}
+    />
+    <Box
+      sx={{
+        position: 'absolute',
+        top: '45%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        textShadow: '0 0 20px rgba(0,0,0,0.7)',
+        pointerEvents: 'none',
+      }}
+    >
+      i scroll till i’m numb, then go outside to remember i’m real
+    </Box>
+  </Box>
 </Box>
+
 
       <Box sx={{ height: '1000px' }} />
     </Box>
