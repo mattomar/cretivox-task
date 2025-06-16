@@ -206,7 +206,7 @@ const ScrollSection = () => {
           ref={image2Ref}
           sx={{
             position: 'absolute',
-            top: '60%',
+            top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%) scale(1.5)',
             maxWidth: '100%',

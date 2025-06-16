@@ -112,17 +112,21 @@ const IntroductionPage = () => {
           gap: 6, // more spacing between image and text
         }}
       >
-        <Box
-          ref={imageRef}
-          sx={{
-            width: '50%',
-            height: '100%',
-            backgroundImage: `url(${meImage})`,
-            backgroundSize: 'cover',
-            borderRadius: '10px',
-            opacity: 0,
-          }}
-        />
+      <Box
+  ref={imageRef}
+  sx={{
+    width: '50%',
+    height: '100%',
+    backgroundImage: `url(${meImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: {
+      xs: '30% center', // shift left on small screens
+      md: 'center',     // default centered on larger screens
+    },
+    borderRadius: '10px',
+    opacity: 0,
+  }}
+/>
         <Box
           ref={textRef}
           sx={{
@@ -153,7 +157,7 @@ const IntroductionPage = () => {
               fontWeight: 300,
             }}
           >
-            I'm Matt, a 22-year-old. I began coding in 2020 and have been building full-stack web applications ever since. My passion lies in blending design with function—crafting interfaces that not only work well but feel meaningful. I'm currently focused on creating engaging digital experiences that reflect personality, purpose, and presence.
+            I'm Matt, a 22-year-old developer. I began coding in 2020 and have been building full-stack web applications ever since. My passion lies in blending design with function—crafting interfaces that not only work well but feel meaningful. I'm currently focused on creating engaging digital experiences that reflect personality, purpose, and presence.
           </Box>
         </Box>
       </Box>

@@ -7,20 +7,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: 'file upload',
-    description: 'A personal portfolio showcasing my work and design skills.',
+    title: 'File Upload',
+    description: 'A clean and simple file upload web app with drag-and-drop and progress tracking.',
     liveLink: 'https://fileuploader-psi.vercel.app/',
     githubLink: 'https://github.com/mattomar/fileuploader',
   },
   {
-    title: 'members only',
-    description: 'A sleek and powerful todo app built with React and Firebase.',
+    title: 'Members Only',
+    description: 'A private message board for registered users—built with authentication and role-based access.',
     liveLink: 'https://club-members.vercel.app/',
     githubLink: 'https://github.com/mattomar/club-members',
   },
   {
-    title: 'pokemon inventory',
-    description: 'Real-time weather tracking app using OpenWeatherMap API.',
+    title: 'Pokemon Inventory',
+    description: 'A playful app for managing and displaying a list of Pokémon with search and stats view.',
     liveLink: 'https://pokemon-tan-tau.vercel.app/',
     githubLink: 'https://github.com/mattomar/pokemon',
   },
@@ -57,13 +57,18 @@ const ProjectsSection = () => {
       ref={sectionRef}
       sx={{
         minHeight: '50vh',
-        backgroundColor: '#111',
+        backgroundColor: '#0f0f0f',
         color: '#fff',
-        px: 4,
-        py: 8,
+        px: { xs: 2, md: 6 },
+        py: 10,
       }}
     >
-      <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' } }}
+      >
         My Projects
       </Typography>
 
@@ -72,8 +77,8 @@ const ProjectsSection = () => {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: 4,
-          mt: 4,
+          gap: 6,
+          mt: 6,
         }}
       >
         {projects.map((project, index) => (
@@ -81,30 +86,47 @@ const ProjectsSection = () => {
             key={index}
             className="project-card"
             sx={{
-              width: 300,
-              backgroundColor: '#1e1e1e',
+              width: 320,
+              backgroundColor: '#1b1b1b',
               borderRadius: 4,
-              boxShadow: 4,
-              transition: 'transform 0.3s ease',
+              boxShadow: 6,
+              p: 2,
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               '&:hover': {
-                transform: 'translateY(-5px)',
+                transform: 'translateY(-8px)',
+                boxShadow: 10,
               },
             }}
           >
             <CardContent>
-              <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#90caf9' }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: '1.3rem',
+                  color: '#90caf9',
+                  mb: 1,
+                }}
+              >
                 {project.title}
               </Typography>
-              <Typography variant="body2" sx={{ mt: 1, color: '#ccc' }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#e0e0e0',
+                  fontSize: '1rem',
+                  lineHeight: 1.7,
+                }}
+              >
                 {project.description}
               </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ mt: 1, pl: 1 }}>
               <Button
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ color: '#64ffda' }}
+                sx={{ color: '#64ffda', fontWeight: 500 }}
               >
                 Live
               </Button>
@@ -112,7 +134,7 @@ const ProjectsSection = () => {
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ color: '#64ffda' }}
+                sx={{ color: '#64ffda', fontWeight: 500 }}
               >
                 GitHub
               </Button>
