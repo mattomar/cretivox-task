@@ -10,31 +10,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ScrollSection = () => {
   const wrapperRef = useRef(null);
-  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-  const imageRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const section1Ref = useRef(null);
+  const section2Ref = useRef(null);
+  const section3Ref = useRef(null);
+  const section4Ref = useRef(null);
+  const section5Ref = useRef(null); // NEW
+  const image1Ref = useRef(null);
+  const image2Ref = useRef(null);
+  const image3Ref = useRef(null);
+  const image4Ref = useRef(null);
+  const image5Ref = useRef(null); // NEW
   const audioRef = useRef(new Audio(frankAudio));
-  const isPlayingRef = useRef(false);
 
   useEffect(() => {
     const audio = audioRef.current;
     audio.loop = true;
     audio.volume = 0;
-
+  
+    const isPlayingRef = { current: false };
+  
     const fadeInAudio = () => {
       if (!isPlayingRef.current) {
-        audio.play().catch((err) => console.warn('Audio play error:', err));
+        audio.play().catch((err) => {
+          console.warn('Audio play interrupted:', err);
+        });
         isPlayingRef.current = true;
       }
-      gsap.killTweensOf(audio, 'volume');
+      gsap.killTweensOf(audio, "volume"); // cancel existing fades
       gsap.to(audio, {
         volume: 1,
         duration: 2,
         ease: 'power1.inOut',
       });
     };
-
+  
     const fadeOutAudio = () => {
-      gsap.killTweensOf(audio, 'volume');
+      gsap.killTweensOf(audio, "volume");
       gsap.to(audio, {
         volume: 0,
         duration: 2,
@@ -48,9 +59,8 @@ const ScrollSection = () => {
         },
       });
     };
-
+  
     const ctx = gsap.context(() => {
-      // Audio trigger for the entire wrapper
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         start: 'top bottom',
@@ -60,11 +70,18 @@ const ScrollSection = () => {
         onEnterBack: fadeInAudio,
         onLeaveBack: fadeOutAudio,
       });
-
-      // Image scroll animations
-      sectionRefs.forEach((sectionRef, index) => {
+  
+      const imageAnimations = [
+        [image1Ref, section1Ref],
+        [image2Ref, section2Ref],
+        [image3Ref, section3Ref],
+        [image4Ref, section4Ref],
+        [image5Ref, section5Ref],
+      ];
+  
+      imageAnimations.forEach(([imageRef, sectionRef]) => {
         gsap.fromTo(
-          imageRefs[index].current,
+          imageRef.current,
           { x: '-210%' },
           {
             x: '180%',
@@ -72,16 +89,16 @@ const ScrollSection = () => {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
-              end: '+=100%',
+              end: 'bottom top',
               scrub: true,
-              pin: index < sectionRefs.length - 1, // Only pin if not the last section
-              markers: false,
+              pin: true,
+              markers: true,
             },
           }
         );
       });
     });
-
+  
     return () => {
       gsap.killTweensOf(audio);
       audio.pause();
@@ -90,6 +107,7 @@ const ScrollSection = () => {
       ctx.revert();
     };
   }, []);
+  
 
   const renderImageBox = (ref, imgSrc, text) => (
     <Box
@@ -136,7 +154,7 @@ const ScrollSection = () => {
     <Box ref={wrapperRef}>
       {/* Section 1 */}
       <Box
-        ref={sectionRefs[0]}
+        ref={section1Ref}
         sx={{
           height: '100vh',
           position: 'relative',
@@ -144,12 +162,12 @@ const ScrollSection = () => {
           overflow: 'hidden',
         }}
       >
-        {renderImageBox(imageRefs[0], meImage, 'the most important thing to me is my friends')}
+        {renderImageBox(image1Ref, meImage, 'the most important thing to me is my friends')}
       </Box>
 
       {/* Section 2 */}
       <Box
-        ref={sectionRefs[1]}
+        ref={section2Ref}
         sx={{
           height: '100vh',
           position: 'relative',
@@ -157,12 +175,12 @@ const ScrollSection = () => {
           overflow: 'hidden',
         }}
       >
-        {renderImageBox(imageRefs[1], secondImage, 'FOODDDDD .......')}
+        {renderImageBox(image2Ref, secondImage, 'FOODDDDD .......')}
       </Box>
 
       {/* Section 3 */}
       <Box
-        ref={sectionRefs[2]}
+        ref={section3Ref}
         sx={{
           height: '100vh',
           position: 'relative',
@@ -170,12 +188,12 @@ const ScrollSection = () => {
           overflow: 'hidden',
         }}
       >
-        {renderImageBox(imageRefs[2], meImage, 'i love modeling')}
+        {renderImageBox(image3Ref, meImage, 'i love modeling')}
       </Box>
 
       {/* Section 4 */}
       <Box
-        ref={sectionRefs[3]}
+        ref={section4Ref}
         sx={{
           height: '100vh',
           position: 'relative',
@@ -183,12 +201,12 @@ const ScrollSection = () => {
           overflow: 'hidden',
         }}
       >
-        {renderImageBox(imageRefs[3], meImage, 'my favorite artist is frank ocean')}
+        {renderImageBox(image4Ref, meImage, 'my favorite artist is frank ocean')}
       </Box>
 
-      {/* Section 5 */}
+      {/* NEW: Section 5 */}
       <Box
-        ref={sectionRefs[4]}
+        ref={section5Ref}
         sx={{
           height: '100vh',
           position: 'relative',
@@ -196,8 +214,11 @@ const ScrollSection = () => {
           overflow: 'hidden',
         }}
       >
-        {renderImageBox(imageRefs[4], secondImage, "i'm addicted to my phone but i love to clear my mind hiking")}
+        {renderImageBox(image5Ref, secondImage, "i'm addicted to my phone but i love to clear my mind hiking")}
       </Box>
+
+      {/* Optional scroll extension */}
+      <Box sx={{ height: '1000px' }} />
     </Box>
   );
 };
