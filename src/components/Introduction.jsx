@@ -102,10 +102,20 @@ const IntroductionPage = () => {
       {/* Div 3 — Image and intro text */}
       <Box
         sx={{
-          height: '100vh',
+          height: {
+            xs: 'auto',
+            md: '100vh',
+          },
           backgroundColor: 'none',
           display: 'flex',
-          justifyContent: 'flex-start',
+          flexDirection: {
+            xs: 'column',
+            md: 'row',
+          },
+          justifyContent: {
+            xs: 'center',
+            md: 'flex-start',
+          },
           alignItems: 'center',
           padding: 4,
           overflow: 'hidden',
@@ -115,36 +125,56 @@ const IntroductionPage = () => {
         <Box
           ref={imageRef}
           sx={{
-            width: '50%',
-            height: '100%',
+            width: {
+              xs: '100%',
+              md: '50%',
+            },
+            height: {
+              xs: '300px',
+              md: '100%',
+            },
             backgroundImage: `url(${meImage})`,
             backgroundSize: 'cover',
             backgroundPosition: {
-              xs: '30% center',
+              xs: 'center 30%',
               md: 'center',
             },
             borderRadius: '10px',
-            filter: 'blur(20px)', // initial blur
+            filter: 'blur(20px)',
             opacity: 0,
           }}
         />
         <Box
           ref={textRef}
           sx={{
-            maxWidth: '40%',
+            maxWidth: {
+              xs: '90%',
+              md: '40%',
+            },
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             opacity: 0,
-            filter: 'blur(20px)', // initial blur
+            filter: 'blur(20px)',
             color: '#f5f5f5',
+            paddingTop: {
+              xs: 4,
+              md: 0,
+            },
+            paddingBottom: {
+              xs: 4,
+              md: 0,
+            },
           }}
         >
           <Box
             component="h1"
             sx={{
               fontFamily: 'Moonscape',
-              fontSize: '3.5rem',
+              fontSize: {
+                xs: '2.5rem',
+                md: '3.5rem',
+              },
               fontWeight: '700',
               marginBottom: 3,
             }}
@@ -154,7 +184,10 @@ const IntroductionPage = () => {
           <Box
             component="p"
             sx={{
-              fontSize: '1.5rem',
+              fontSize: {
+                xs: '1.2rem',
+                md: '1.5rem',
+              },
               lineHeight: 1.8,
               fontWeight: 300,
             }}
