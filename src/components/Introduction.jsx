@@ -11,11 +11,11 @@ const IntroductionPage = () => {
   const imageRef = useRef(null);
   const textRef = useRef(null);
   const floatingTextRef = useRef(null);
+  const topImageRef = useRef(null);
 
   useEffect(() => {
-    // Floating text scrolls down into view
     gsap.to(floatingTextRef.current, {
-      y: 300, // distance to move down
+      y: 300,
       opacity: 0,
       ease: 'power2.out',
       scrollTrigger: {
@@ -26,7 +26,17 @@ const IntroductionPage = () => {
       },
     });
 
-    // Animate image and text on scroll
+    gsap.to(topImageRef.current, {
+      backgroundPositionY: '0%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: topImageRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: imageRef.current,
@@ -52,51 +62,54 @@ const IntroductionPage = () => {
 
   return (
     <Box>
-      {/* Div 1 */}
+      {/* Div 1 — Top background image scrolls up */}
       <Box
+        ref={topImageRef}
         sx={{
           height: '50vh',
           backgroundImage: `url(${meImage2})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center 20%',
+          backgroundPosition: 'center 60%',
           backgroundRepeat: 'no-repeat',
         }}
       />
 
-      {/* Div 2 (floating text) */}
+      {/* Div 2 — Floating scroll prompt */}
       <Box
-  sx={{
-    height: '30vh',
-    background: 'none',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-  }}
->
-  <Box
-    ref={floatingTextRef}
-    sx={{
-      fontSize: '2.5rem',
-      fontWeight: '600',
-      color: 'white', // ✅ fixed
-      fontFamily: 'La Cerchia',
-    }}
-  >
-    Scroll Down
-  </Box>
-</Box>
-      {/* Div 3 (main content animation) */}
+        sx={{
+          height: '30vh',
+          background: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          ref={floatingTextRef}
+          sx={{
+            fontSize: '2.5rem',
+            fontWeight: '600',
+            color: 'white',
+            fontFamily: 'La Cerchia',
+          }}
+        >
+          Scroll Down
+        </Box>
+      </Box>
+
+      {/* Div 3 — Image and intro text */}
       <Box
         sx={{
           height: '100vh',
           backgroundColor: 'none',
           display: 'flex',
           justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          padding: 2,
+          alignItems: 'center',
+          padding: 4,
           overflow: 'hidden',
+          gap: 6, // more spacing between image and text
         }}
       >
         <Box
@@ -106,7 +119,7 @@ const IntroductionPage = () => {
             height: '100%',
             backgroundImage: `url(${meImage})`,
             backgroundSize: 'cover',
-            borderRadius: '8px',
+            borderRadius: '10px',
             opacity: 0,
           }}
         />
@@ -118,16 +131,16 @@ const IntroductionPage = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             opacity: 0,
-            marginLeft: 4,
+            color: '#f5f5f5', // softer white
           }}
         >
           <Box
             component="h1"
             sx={{
               fontFamily: 'Moonscape',
-              fontSize: '3rem',
+              fontSize: '3.5rem',
               fontWeight: '700',
-              marginBottom: 2,
+              marginBottom: 3,
             }}
           >
             Matt Omar
@@ -135,11 +148,12 @@ const IntroductionPage = () => {
           <Box
             component="p"
             sx={{
-              fontSize: '1.25rem',
-              color: '#555',
+              fontSize: '1.5rem', // increased size
+              lineHeight: 1.8, // better spacing between lines
+              fontWeight: 300,
             }}
           >
-            I'm a full stack developer who started coding back in 2020.
+            I'm Matt, a 22-year-old. I began coding in 2020 and have been building full-stack web applications ever since. My passion lies in blending design with function—crafting interfaces that not only work well but feel meaningful. I'm currently focused on creating engaging digital experiences that reflect personality, purpose, and presence.
           </Box>
         </Box>
       </Box>

@@ -7,22 +7,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: 'Portfolio Website',
+    title: 'file upload',
     description: 'A personal portfolio showcasing my work and design skills.',
-    liveLink: 'https://your-portfolio.com',
-    githubLink: 'https://github.com/yourusername/portfolio',
+    liveLink: 'https://fileuploader-psi.vercel.app/',
+    githubLink: 'https://github.com/mattomar/fileuploader',
   },
   {
-    title: 'Todo App',
+    title: 'members only',
     description: 'A sleek and powerful todo app built with React and Firebase.',
-    liveLink: 'https://your-todo-app.com',
-    githubLink: 'https://github.com/yourusername/todo-app',
+    liveLink: 'https://club-members.vercel.app/',
+    githubLink: 'https://github.com/mattomar/club-members',
   },
   {
-    title: 'Weather Dashboard',
+    title: 'pokemon inventory',
     description: 'Real-time weather tracking app using OpenWeatherMap API.',
-    liveLink: 'https://your-weather-dashboard.com',
-    githubLink: 'https://github.com/yourusername/weather-dashboard',
+    liveLink: 'https://pokemon-tan-tau.vercel.app/',
+    githubLink: 'https://github.com/mattomar/pokemon',
   },
 ];
 
