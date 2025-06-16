@@ -5,6 +5,8 @@ body {
   height: 100%;
   background-color: black;
   position: relative; /* Required for ::before to be positioned correctly */
+  font-family: 'La Cerchia', sans-serif;
+
 }
 
 body::before {
@@ -30,3 +32,9 @@ body::before {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'La Cerchia';
+  src: url('../assets//fonts/La_Cerchia.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

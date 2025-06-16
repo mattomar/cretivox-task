@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: `'Moonscape', 'Roboto', 'Arial', sans-serif`,
+    fontFamily: `'Moonscape','La Cerchia', 'Roboto', 'Arial', sans-serif`,
   },
 });
 

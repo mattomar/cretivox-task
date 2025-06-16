@@ -2,48 +2,51 @@ import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import meImage from '../assets/images/me.jpg';
-import secondImage from '../assets/images/me2.jpg';
+
 import frankAudio from '../assets/images/frank.mp3';
+import frankImage from '../assets/images/frank.jpg';
+import friendsImage from '../assets/images/friends.jpg';
+import hikeImage from '../assets/images/hike.jpg';
+import modelVideo from '../assets/images/model.mov';
+import editingVideo from '../assets/images/editing.mov';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollSection = () => {
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef(null); 
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
   const section4Ref = useRef(null);
-  const section5Ref = useRef(null); // NEW
+  const section5Ref = useRef(null);
+
   const image1Ref = useRef(null);
   const image2Ref = useRef(null);
-  const image3Ref = useRef(null);
+  const videoRef = useRef(null);
   const image4Ref = useRef(null);
-  const image5Ref = useRef(null); // NEW
+  const image5Ref = useRef(null);
+
   const audioRef = useRef(new Audio(frankAudio));
 
   useEffect(() => {
     const audio = audioRef.current;
     audio.loop = true;
     audio.volume = 0;
-  
     const isPlayingRef = { current: false };
-  
+
     const fadeInAudio = () => {
       if (!isPlayingRef.current) {
-        audio.play().catch((err) => {
-          console.warn('Audio play interrupted:', err);
-        });
+        audio.play().catch((err) => console.warn('Audio play error:', err));
         isPlayingRef.current = true;
       }
-      gsap.killTweensOf(audio, "volume"); // cancel existing fades
+      gsap.killTweensOf(audio, "volume");
       gsap.to(audio, {
         volume: 1,
         duration: 2,
         ease: 'power1.inOut',
       });
     };
-  
+
     const fadeOutAudio = () => {
       gsap.killTweensOf(audio, "volume");
       gsap.to(audio, {
@@ -59,7 +62,7 @@ const ScrollSection = () => {
         },
       });
     };
-  
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: wrapperRef.current,
@@ -70,55 +73,91 @@ const ScrollSection = () => {
         onEnterBack: fadeInAudio,
         onLeaveBack: fadeOutAudio,
       });
-  
-      const imageAnimations = [
-        [image1Ref, section1Ref],
-        [image2Ref, section2Ref],
-        [image3Ref, section3Ref],
-        [image4Ref, section4Ref],
-        [image5Ref, section5Ref],
-      ];
-  
-      imageAnimations.forEach(([imageRef, sectionRef]) => {
-        gsap.fromTo(
-          imageRef.current,
-          { x: '-210%' },
-          {
-            x: '180%',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-              pin: true,
-              markers: true,
-            },
-          }
-        );
+
+      gsap.fromTo(image1Ref.current, { x: '-220%' }, {
+        x: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section1Ref.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 3,
+          pin: true,
+          markers: false,
+        },
+      });
+
+      gsap.fromTo(image2Ref.current, { x: '-320%' }, {
+        x: '190%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section2Ref.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 3,
+          pin: true,
+          markers: false,
+        },
+      });
+
+      gsap.fromTo(videoRef.current, { x: '-350%' }, {
+        x: '230%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section3Ref.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 3,
+          pin: true,
+          markers: false,
+        },
+      });
+
+      gsap.fromTo(image4Ref.current, { x: '-250%' }, {
+        x: '130%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section4Ref.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 3,
+          pin: true,
+          markers: false,
+        },
+      });
+
+      gsap.fromTo(image5Ref.current, { x: '-230%' }, {
+        x: '170%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section5Ref.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 3,
+          pin: true,
+          markers: false,
+        },
       });
     });
-  
+
     return () => {
       gsap.killTweensOf(audio);
       audio.pause();
       audio.currentTime = 0;
-      isPlayingRef.current = false;
       ctx.revert();
     };
   }, []);
-  
 
-  const renderImageBox = (ref, imgSrc, text) => (
+  const renderImageBox = (ref, imgSrc, text, scale = 1) => (
     <Box
       ref={ref}
       sx={{
-        width: '600px',
-        height: '400px',
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
+        maxWidth: '100%',
+        maxHeight: '100%',
       }}
     >
       <Box
@@ -126,22 +165,28 @@ const ScrollSection = () => {
         src={imgSrc}
         alt="Sliding Image"
         sx={{
-          width: '100%',
-          height: '100%',
+          display: 'block',
+          width: 'auto',
+          height: 'auto',
+          maxWidth: '100%',
+          maxHeight: '100%',
           objectFit: 'cover',
+          transform: `scale(${scale})`,
+          transformOrigin: 'center',
         }}
       />
       <Box
         sx={{
           position: 'absolute',
-          top: '-10%',
+          top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           color: 'white',
-          fontSize: '1.5rem',
+          fontSize: 'clamp(2rem, 5vw, 4rem)',
           textAlign: 'center',
+          fontFamily: 'La Cerchia',
           fontWeight: 'bold',
-          textShadow: '0 0 10px rgba(0,0,0,0.6)',
+          textShadow: '0 0 20px rgba(0,0,0,0.7)',
           pointerEvents: 'none',
         }}
       >
@@ -152,75 +197,120 @@ const ScrollSection = () => {
 
   return (
     <Box ref={wrapperRef}>
-      {/* Section 1 */}
-      <Box
-        ref={section1Ref}
-        sx={{
-          height: '100vh',
-          position: 'relative',
-          backgroundColor: 'transparent',
-          overflow: 'hidden',
-        }}
-      >
-        {renderImageBox(image1Ref, meImage, 'the most important thing to me is my friends')}
+      <Box ref={section1Ref} sx={sectionStyle}>
+        {renderImageBox(image1Ref, friendsImage, 'they’re the only ones who make this place feel less quiet')}
       </Box>
 
-      {/* Section 2 */}
-      <Box
-        ref={section2Ref}
-        sx={{
-          height: '100vh',
-          position: 'relative',
-          backgroundColor: 'transparent',
-          overflow: 'hidden',
-        }}
-      >
-        {renderImageBox(image2Ref, secondImage, 'FOODDDDD .......')}
+      <Box ref={section2Ref} sx={sectionStyle}>
+        <Box
+          ref={image2Ref}
+          sx={{
+            position: 'absolute',
+            top: '60%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(1.5)',
+            maxWidth: '100%',
+            maxHeight: '100%',
+          }}
+        >
+          <video
+            src={editingVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              display: 'block',
+              width: 'auto',
+              height: 'auto',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'cover',
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '45%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              color: 'white',
+              fontSize: 'clamp(1rem, 4vw, 3rem)',
+              textAlign: 'center',
+              fontWeight: 'bold',
+              textShadow: '0 0 20px rgba(0,0,0,0.7)',
+              pointerEvents: 'none',
+            }}
+          >
+            i cut my days into scenes — maybe they’ll make sense when it’s all edited
+          </Box>
+        </Box>
       </Box>
 
-      {/* Section 3 */}
-      <Box
-        ref={section3Ref}
-        sx={{
-          height: '100vh',
-          position: 'relative',
-          backgroundColor: 'transparent',
-          overflow: 'hidden',
-        }}
-      >
-        {renderImageBox(image3Ref, meImage, 'i love modeling')}
+      <Box ref={section3Ref} sx={sectionStyle}>
+        <Box
+          ref={videoRef}
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            maxWidth: '100%',
+            maxHeight: '100%',
+          }}
+        >
+          <video
+            src={modelVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              display: 'block',
+              width: 'auto',
+              height: 'auto',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'cover',
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              color: 'white',
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              textAlign: 'center',
+              fontWeight: 'bold',
+              textShadow: '0 0 20px rgba(0,0,0,0.7)',
+              pointerEvents: 'none',
+            }}
+          >
+            i used to feel invisible now i let them look
+          </Box>
+        </Box>
       </Box>
 
-      {/* Section 4 */}
-      <Box
-        ref={section4Ref}
-        sx={{
-          height: '100vh',
-          position: 'relative',
-          backgroundColor: 'transparent',
-          overflow: 'hidden',
-        }}
-      >
-        {renderImageBox(image4Ref, meImage, 'my favorite artist is frank ocean')}
+      <Box ref={section4Ref} sx={sectionStyle}>
+        {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel', 0.8)}
       </Box>
 
-      {/* NEW: Section 5 */}
-      <Box
-        ref={section5Ref}
-        sx={{
-          height: '100vh',
-          position: 'relative',
-          backgroundColor: 'transparent',
-          overflow: 'hidden',
-        }}
-      >
-        {renderImageBox(image5Ref, secondImage, "i'm addicted to my phone but i love to clear my mind hiking")}
+      <Box ref={section5Ref} sx={sectionStyle}>
+        {renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real')}
       </Box>
 
-      {/* Optional scroll extension */}
       <Box sx={{ height: '1000px' }} />
     </Box>
   );
+};
+
+const sectionStyle = {
+  height: '100vh',
+  position: 'relative',
+  backgroundColor: 'transparent',
+  overflow: 'hidden',
 };
 
 export default ScrollSection;
