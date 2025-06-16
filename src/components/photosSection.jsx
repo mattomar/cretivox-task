@@ -294,17 +294,21 @@ const ScrollSection = () => {
       </Box>
 
       <Box ref={section4Ref} sx={sectionStyle}>
-  <Box
-    ref={image4Ref}
-    sx={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%) scale(1.5)',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    }}
-  >
+      <Box
+  ref={image4Ref}
+  sx={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: {
+      xs: 'translate(-50%, -50%) scale(1.5)',
+      md: 'translate(-50%, -50%) scale(1.2)',
+      lg: 'translate(-50%, -50%) scale(1)',
+    },
+    maxWidth: '100%',
+    maxHeight: '100%',
+  }}
+>
     <Box
       component="img"
       src={frankImage}
@@ -338,17 +342,21 @@ const ScrollSection = () => {
 </Box>
 
 <Box ref={section5Ref} sx={sectionStyle}>
-  <Box
-    ref={image5Ref}
-    sx={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%) scale(1.5)',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    }}
-  >
+<Box
+  ref={image5Ref}
+  sx={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: {
+      xs: 'translate(-50%, -50%) scale(1.5)',
+      md: 'translate(-50%, -50%) scale(1.2)',
+      lg: 'translate(-50%, -50%) scale(1)',
+    },
+    maxWidth: '100%',
+    maxHeight: '100%',
+  }}
+>
     <Box
       component="img"
       src={hikeImage}
