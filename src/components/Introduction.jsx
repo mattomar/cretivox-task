@@ -49,13 +49,13 @@ const IntroductionPage = () => {
     timeline
       .fromTo(
         imageRef.current,
-        { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, ease: 'power2.out' }
+        { x: -100, opacity: 0, filter: 'blur(20px)' },
+        { x: 0, opacity: 1, filter: 'blur(0px)', ease: 'power2.out' }
       )
       .fromTo(
         textRef.current,
-        { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, ease: 'power2.out' },
+        { x: -100, opacity: 0, filter: 'blur(20px)' },
+        { x: 0, opacity: 1, filter: 'blur(0px)', ease: 'power2.out' },
         '<0.3'
       );
   }, []);
@@ -109,24 +109,25 @@ const IntroductionPage = () => {
           alignItems: 'center',
           padding: 4,
           overflow: 'hidden',
-          gap: 6, // more spacing between image and text
+          gap: 6,
         }}
       >
-      <Box
-  ref={imageRef}
-  sx={{
-    width: '50%',
-    height: '100%',
-    backgroundImage: `url(${meImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: {
-      xs: '30% center', // shift left on small screens
-      md: 'center',     // default centered on larger screens
-    },
-    borderRadius: '10px',
-    opacity: 0,
-  }}
-/>
+        <Box
+          ref={imageRef}
+          sx={{
+            width: '50%',
+            height: '100%',
+            backgroundImage: `url(${meImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: {
+              xs: '30% center',
+              md: 'center',
+            },
+            borderRadius: '10px',
+            filter: 'blur(20px)', // initial blur
+            opacity: 0,
+          }}
+        />
         <Box
           ref={textRef}
           sx={{
@@ -135,7 +136,8 @@ const IntroductionPage = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             opacity: 0,
-            color: '#f5f5f5', // softer white
+            filter: 'blur(20px)', // initial blur
+            color: '#f5f5f5',
           }}
         >
           <Box
@@ -152,8 +154,8 @@ const IntroductionPage = () => {
           <Box
             component="p"
             sx={{
-              fontSize: '1.5rem', // increased size
-              lineHeight: 1.8, // better spacing between lines
+              fontSize: '1.5rem',
+              lineHeight: 1.8,
               fontWeight: 300,
             }}
           >
