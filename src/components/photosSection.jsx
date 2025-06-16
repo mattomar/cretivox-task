@@ -294,11 +294,11 @@ const ScrollSection = () => {
       </Box>
 
       <Box ref={section4Ref} sx={sectionStyle}>
-  {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel', 0.75, '40%')}
+      {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel')}
 </Box>
 
 <Box ref={section5Ref} sx={sectionStyle}>
-  {renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real', 0.75, '40%')}
+{renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real')}
 </Box>
 
       <Box sx={{ height: '1000px' }} />
