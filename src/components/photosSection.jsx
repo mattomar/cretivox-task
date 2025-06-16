@@ -293,12 +293,38 @@ const ScrollSection = () => {
         </Box>
       </Box>
 
-      <Box ref={section4Ref} sx={sectionStyle}>
-      {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel')}
+      <Box
+  sx={{
+    position: 'absolute',
+    top: '40%', // ⬅️ was '50%', moved text up
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    textShadow: '0 0 20px rgba(0,0,0,0.7)',
+    pointerEvents: 'none',
+  }}
+>
+  frank says it in a way i never could,but always feel
 </Box>
 
-<Box ref={section5Ref} sx={sectionStyle}>
-{renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real')}
+<Box
+  sx={{
+    position: 'absolute',
+    top: '40%', // ⬅️ was '50%', moved text up
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    textShadow: '0 0 20px rgba(0,0,0,0.7)',
+    pointerEvents: 'none',
+  }}
+>
+  i scroll till i’m numb, then go outside to remember i’m real
 </Box>
 
       <Box sx={{ height: '1000px' }} />
