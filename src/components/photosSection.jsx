@@ -143,7 +143,7 @@ const ScrollSection = () => {
     };
   }, []);
 
-  const renderImageBox = (ref, imgSrc, text, scale = 1) => (
+  const renderImageBox = (ref, imgSrc, text, scale = 1, customTop = null) => (
     <Box
       ref={ref}
       sx={{
@@ -176,7 +176,7 @@ const ScrollSection = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: ref === image1Ref ? '30%' : '100%',
+          top: customTop || (ref === image1Ref ? '30%' : '100%'),
           left: '50%',
           transform: 'translate(-50%, -50%)',
           color: 'white',
@@ -294,17 +294,12 @@ const ScrollSection = () => {
       </Box>
 
       <Box ref={section4Ref} sx={sectionStyle}>
-  <Box sx={{ position: 'relative', top: '5vh' }}>
-    {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel', 0.75)}
-  </Box>
-</Box>
+        {renderImageBox(image4Ref, frankImage, 'frank says it in a way i never could,but always feel', 0.75, '40%')}
+      </Box>
 
-<Box ref={section5Ref} sx={sectionStyle}>
-  <Box sx={{ position: 'relative', top: '5vh' }}>
-    {renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real', 0.75)}
-  </Box>
-</Box>
-
+      <Box ref={section5Ref} sx={sectionStyle}>
+        {renderImageBox(image5Ref, hikeImage, 'i scroll till i’m numb, then go outside to remember i’m real', 0.75, '40%')}
+      </Box>
 
       <Box sx={{ height: '1000px' }} />
     </Box>
