@@ -143,12 +143,12 @@ const ScrollSection = () => {
     };
   }, []);
 
-  const renderImageBox = (ref, imgSrc, text, scale = 1, topPosition = '50%') => (
+  const renderImageBox = (ref, imgSrc, text, scale = 1) => (
     <Box
       ref={ref}
       sx={{
         position: 'absolute',
-        top: topPosition,
+        top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         maxWidth: '100%',
@@ -176,11 +176,13 @@ const ScrollSection = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: '0%',
+          top: ref === image1Ref ? '30%' : '100%',
           left: '50%',
-          transform: 'translate(-50%, -100%)',
+          transform: 'translate(-50%, -50%)',
           color: 'white',
-          fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+          fontSize: ref === image1Ref
+            ? { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '3rem', xl: '4rem' }
+            : 'clamp(1rem, 2.5vw, 2rem)',
           textAlign: 'center',
           fontFamily: 'La Cerchia',
           fontWeight: 'bold',
@@ -192,7 +194,6 @@ const ScrollSection = () => {
       </Box>
     </Box>
   );
-  
 
   return (
     <Box ref={wrapperRef}>
